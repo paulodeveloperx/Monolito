@@ -1,66 +1,106 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Monolito
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+## Descrição
 
-## About Laravel
+Monolito é um projeto Laravel que usa XAMPP, PHP, Composer, Node.js e NPM para fornecer um ambiente de desenvolvimento web robusto. Este projeto foi desenvolvido com foco em simplicidade e flexibilidade, aproveitando o poder do framework Laravel e ferramentas adicionais.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## Pré-requisitos
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+Antes de começar, você precisará das seguintes ferramentas instaladas no seu sistema:
+- *[Visual Code](https://code.visualstudio.com)*: Visual Code é usado para abrir o projeto, e rodar ele em conjunto do XAMPP.
+- *[XAMPP](https://www.apachefriends.org/index.html)*: Um pacote que inclui Apache, MySQL, PHP e Perl. Utilize o XAMPP para rodar o servidor Apache e o banco de dados MySQL.
+- *[PHP >= 8.0](https://www.php.net/downloads.php)*: Certifique-se de que o PHP esteja corretamente configurado no XAMPP.
+- *[Composer](https://getcomposer.org/)*: Um gerenciador de dependências para PHP.
+- *[Node.js >= 16.x](https://nodejs.org/)*: Inclui o NPM, que será necessário para instalar e gerenciar dependências de frontend.
+- *[NPM](https://www.npmjs.com/)*: Normalmente, vem com o Node.js e é usado para gerenciar pacotes JavaScript.
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+## Instalação
 
-## Learning Laravel
+Siga os passos abaixo para configurar o projeto localmente.
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+1. Clonando o repositório
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+Primeiro, clone o repositório do projeto para a sua máquina local: Vá em code, e baixe o arquivo Zip. Extraia, e use o Visual Code, para abrir o projeto. Pode usar o Docker, 
+se você conseguir.
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+2. Configurando o XAMPP
+Inicie o XAMPP e ligue os módulos Apache e MySQL.
+Crie um banco de dados MySQL para a aplicação usando o phpMyAdmin (ou qualquer cliente MySQL de sua escolha).
+3. Instalando dependências do PHP
+Navegue até o diretório do projeto e execute o comando abaixo para instalar as dependências do Laravel via Composer:
 
-## Laravel Sponsors
+```bash
+Copiar código
+cd monolito
+composer install
+```
+4. Instalando dependências do Node.js
+Em seguida, instale as dependências de frontend com NPM:
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+```bash
+Copiar código
+npm install
+```
+5. Configurando o ambiente
+Renomeie o arquivo .env.example para .env:
+```bash
+Copiar código
+cp .env.example .env
+Edite o arquivo .env para configurar o banco de dados que você criou:
+dotenv
+```
+```bash
+Copiar código
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=nome_do_banco
+DB_USERNAME=seu_usuario
+DB_PASSWORD=sua_senha
+```
+Gere a chave da aplicação Laravel:
+```bash
+Copiar código
+php artisan key:generate
+```
+6. Executando migrações e seeds
+Execute as migrações para criar as tabelas no banco de dados:
 
-### Premium Partners
+```bash
+Copiar código
+php artisan migrate
+```
+Se você tiver seeds para popular o banco de dados com dados iniciais, execute:
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
+```bash
+Copiar código
+php artisan db:seed
+```
+7. Compilando assets
+Use o Laravel Mix para compilar os assets (CSS, JS, etc.):
 
-## Contributing
+```bash
+Copiar código
+npm run dev
+```
+8. Rodando o servidor local
+Agora, você pode rodar o servidor de desenvolvimento do Laravel:
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+```bash
+Copiar código
+php artisan serve
+Por padrão, o servidor estará disponível em http://127.0.0.1:8000.
+```
 
-## Code of Conduct
+## Dicas
+Certifique-se de que o XAMPP esteja rodando o Apache e MySQL antes de iniciar o servidor Laravel.
+Para um ambiente de produção, considere usar npm run prod em vez de npm run dev para otimizar os assets.
+Caso haja problemas com permissões de pastas, execute o seguinte comando:
+```bash
+Copiar código
+sudo chmod -R 775 storage
+sudo chmod -R 775 bootstrap/cache
+```
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+Licença
+Este projeto é open-source e está licenciado sob os termos da MIT License.
